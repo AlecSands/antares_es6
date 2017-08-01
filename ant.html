@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+
+	<body>
+		<script>
+			class BankAccount {
+				constructor(balance, accNumber){
+					this.balance = balance;
+					this.accNumber = accNumber;
+				}
+
+				withdraw(x){
+					this.balance -= x;
+					console.log('Balance: ', this.balance);
+				}
+
+				checkBalance(){
+					console.log('Balance Checked');
+				}
+			}
+
+			class SavingsAccount extends BankAccount {
+				constructor(balance, accNumber, interest){
+					super(balance, accNumber);
+					this.interest = interest;
+				}
+
+				withdraw(x){
+					super.withdraw(x);
+					//-9005
+					if(this.balance < 0){
+						this.balance += x;
+						
+						console.log("This is your balance: ", this.balance);
+					} 
+				}
+			}
+
+			class CheckingAccount extends BankAccount {
+				constructor(balance, accNumber){
+					super(balance, accNumber);
+				}
+
+				withdraw(x){
+					super.withdraw(x);
+					if(this.balance < 0){
+						this.balance -= 29.99;
+						alert('YOU OVERDRAFTED!');
+						console.log('Balance: ', this.balance);
+					}
+				}
+			}
+
+			var ScottsSavings = new SavingsAccount(1000, 1111, 0.1);
+			var ScottsChecking = new CheckingAccount(1000,1112);
+
+			
+			ScottsSavings.withdraw(5000);
+
+			
+			console.log(Math);
+
+			class Utilities {
+				static meow(){
+					console.log('meow');
+				}
+			}
+
+			// var scottsUtils = new Utilities();
+			// scottsUtils.meow();
+
+			console.log(this);
+
+		</script>
+	</body>
+</html>
